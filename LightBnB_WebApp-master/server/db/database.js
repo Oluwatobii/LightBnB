@@ -9,9 +9,6 @@ const pool = new Pool({
 
 pool.connect();
 
-const properties = require("./json/properties.json");
-const users = require("./json/users.json");
-
 /// Users
 
 /**
@@ -120,11 +117,11 @@ const getAllProperties = function (options, limit = 10) {
     queryString += `WHERE city LIKE $${queryParams.length} `;
 
     if (options.owner_id) {
-      queryParams.push(`${owner_id}`);
+      queryParams.push(`${options.owner_id}`);
       queryString += ` AND owner_id = $${queryParams.length} `;
     }
   } else if (options.owner_id) {
-    queryParams.push(`${owner_id}`);
+    queryParams.push(`${options.owner_id}`);
     queryString += `WHERE owner_id = $${queryParams.length} `;
   }
   queryString += `GROUP BY properties.id
@@ -196,7 +193,7 @@ const addProperty = function (property) {
         property.cover_photo_url,
         property.cost_per_night,
         property.parking_spaces,
-        property.number_of_bathroom,
+        property.number_of_bathrooms,
         property.number_of_bedrooms,
         property.country,
         property.street,
