@@ -7,10 +7,7 @@ const pool = new Pool({
   database: "lightbnb",
 });
 
-pool
-  .connect()
-  .then(console.log("connected"))
-  .catch((err) => console.log(err));
+pool.connect();
 
 const properties = require("./json/properties.json");
 const users = require("./json/users.json");
